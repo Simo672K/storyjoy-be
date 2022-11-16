@@ -10,7 +10,7 @@ def home(request):
   return render(request, 'index.html', context)
 
 def story_details(request, pk):
-  story= Story.objects.filter(pk= pk).prefetch_related('chapter_set')
+  story= Story.objects.get(pk= pk).prefetch_related('chapter_set')
   context= {
     'story': list(story)
   }

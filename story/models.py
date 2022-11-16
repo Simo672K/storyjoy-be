@@ -33,6 +33,7 @@ class Story(models.Model):
 # Chapter
 class Chapter(models.Model):
   title= models.CharField(max_length=500)
+  slug= models.SlugField(unique=True)
   story= models.ForeignKey(Story, on_delete=models.CASCADE)
   body= models.TextField()
   created_at= models.DateField(auto_now_add=True)

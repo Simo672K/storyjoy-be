@@ -11,8 +11,8 @@
 <body>
   <h1>Story details page</h1>
   <ul>
-    {% for chapter in story.chapter_set.objects.all %}
-    <li>{{chapter}}</li>
+    {% for chapter in story.chapter_set.all %}
+    <li>{{chapter.title}}</li>
     {% endfor %}
   </ul>
 </body>
