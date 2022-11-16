@@ -10,9 +10,15 @@ def home(request):
   return render(request, 'index.html', context)
 
 def story_details(request, pk):
-  story= Story.objects.get(pk= pk).prefetch_related('chapter_set')
+  story= Story.objects.prefetch_related('chapter_set').get(pk= pk)
   context= {
-    'story': list(story)
+    'story': story
   }
-
   return render(request, 'story-details.html', context)
+
+def story_chapter(request, pk, slug):
+  chapter = Chapter.objects.get(slug= slug)
+  context={
+    'chapter': chapter
+  }
+  return render(request, 'story-chapter.html', context)

@@ -5,16 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Story Chapters</title>
 </head>
 
 <body>
-  <h1>Stories List</h1>
-  <ul>
-    {% for story in stories %}
-    <li><a href="{% url 'story-details' pk=story.id %}">{{story.title}}</a></li>
-    {% endfor %}
-  </ul>
+  <h1>{{chapter.title}}</h1>
+  <p>{{ chapter.body }}</p>
 </body>
 
 </html>

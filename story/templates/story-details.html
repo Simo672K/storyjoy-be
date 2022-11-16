@@ -12,7 +12,7 @@
   <h1>Story details page</h1>
   <ul>
     {% for chapter in story.chapter_set.all %}
-    <li>{{chapter.title}}</li>
+    <li><a href="{% url 'story-chapter' pk=story.id slug=chapter.slug %}">{{chapter.title}}</a></li>
     {% endfor %}
   </ul>
 </body>
