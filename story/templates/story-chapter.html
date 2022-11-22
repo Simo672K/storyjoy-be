@@ -9,8 +9,30 @@
 </head>
 
 <body>
-  <h1>{{chapter.title}}</h1>
+  <ul>
+
+    {% if navigation.prv %}
+    <li><a href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
+    {% endif %}
+
+    {% if navigation.nxt %}
+    <li><a href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next Chapter</a></li>
+    {% endif %}
+  </ul>
+  <h1>{{ chapter.story.title }}</h1>
+  <h2>{{ chapter.title }}</h2>
+  <span>{{ chapter.created_at }}</span>
   <p>{{ chapter.body }}</p>
+  <ul>
+
+    {% if navigation.prv %}
+    <li><a href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
+    {% endif %}
+
+    {% if navigation.nxt %}
+    <li><a href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next Chapter</a></li>
+    {% endif %}
+  </ul>
 </body>
 
 </html>

@@ -10,6 +10,7 @@
 
 <body>
   <h1>Story details page</h1>
+  <h3>Author: {{ story.author.username }}</h3>
   <ul>
     {% for chapter in story.chapter_set.all %}
     <li><a href="{% url 'story-chapter' pk=story.id slug=chapter.slug %}">{{chapter.title}}</a></li>
