@@ -11,30 +11,46 @@
 </head>
 
 <body>
-  <section class="container">
+  {% include 'navbar.html' %}
+
+  <section class="container mt-5">
+
     <header class="text-center">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'home-page' %}">Home</a></li>
+          <li class="breadcrumb-item">
+            <a class="text-decoration-none" href="{% url 'story-details' pk=chapter.story.id %}">
+              Content Table
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">{{ chapter.title }}</li>
+        </ol>
+      </nav>
 
       <h3 class="lh-1 mb-0">{{ chapter.story.title }}</h3>
       <h2 class="lh-1 mb-0">{{ chapter.title }}</h2>
       <span class="text-muted">Published: {{ chapter.created_at }}</span>
-      <nav>
-        <ul class="nav my-2">
-          {% if navigation.prv %}
-          <li class="nav-item"><a class=" btn btn-primary"
-              href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
-          {% endif %}
 
-          {% if navigation.nxt %}
-          <li class="nav-item ms-auto">
-            <a class=" btn btn-primary" href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next
-              Chapter</a>
-          </li>
-          {% endif %}
-        </ul>
-      </nav>
+      <ul class="nav my-2">
+        {% if navigation.prv %}
+        <li class="nav-item"><a class=" btn btn-primary"
+            href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
+        {% endif %}
+
+        {% if navigation.nxt %}
+        <li class="nav-item ms-auto">
+          <a class=" btn btn-primary" href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next
+            Chapter</a>
+        </li>
+        {% endif %}
+      </ul>
     </header>
+
     <main>
-      <p>{{ chapter.body }}</p>
+      <article id="content-container" class="mt-4 px-5">
+        <p id="content">{{ chapter.body }}</p>
+      </article>
       <ul class="nav my-2">
 
         {% if navigation.prv %}
@@ -50,6 +66,29 @@
     </main>
   </section>
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+
+    function newParag(content) {
+      const p = document.createElement("p");
+      p.textContent = content;
+      return p
+    }
+
+    (function init() {
+      const contentContainer = document.getElementById("content-container")
+      const content = document.getElementById("content")
+      const rawText = content.innerText;
+      const splittedText = rawText.split(".")
+      contentContainer.innerHTML = ""
+
+      // console.log(splittedText)
+      for (let ph of splittedText) {
+        let p = newParag(ph + ".");
+        contentContainer.append(p);
+      }
+
+    })();
+  </script>
 </body>
 
 </html>

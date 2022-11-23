@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +6,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>stoy details</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <title>{{ story.title }}</title>
 </head>
 
 <body>
-  <h1>Story details page</h1>
-  <h3>Author: {{ story.author.username }}</h3>
-  <ul>
-    {% for chapter in story.chapter_set.all %}
-    <li><a href="{% url 'story-chapter' pk=story.id slug=chapter.slug %}">{{chapter.title}}</a></li>
-    {% endfor %}
-  </ul>
+  {% include 'navbar.html' %}
+  <div class="container my-5">
+    <h1>Story details page</h1>
+    <h3>Author: {{ story.author.username }}</h3>
+    <ul>
+      {% for chapter in story.chapter_set.all %}
+      <li><a href="{% url 'story-chapter' pk=story.id slug=chapter.slug %}">{{chapter.title}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 
 </html>
