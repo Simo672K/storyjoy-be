@@ -35,13 +35,15 @@
       <ul class="nav my-2">
         {% if navigation.prv %}
         <li class="nav-item"><a class=" btn btn-primary"
-            href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
+            href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">
+            < Previous Chapter</a>
+        </li>
         {% endif %}
 
         {% if navigation.nxt %}
         <li class="nav-item ms-auto">
           <a class=" btn btn-primary" href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next
-            Chapter</a>
+            Chapter ></a>
         </li>
         {% endif %}
       </ul>
@@ -55,12 +57,14 @@
 
         {% if navigation.prv %}
         <li class="nav-item"><a class=" btn btn-primary"
-            href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">Previous Chapter</a></li>
+            href="{% url 'story-chapter' pk=story.id slug=navigation.prv.slug %}">
+            < Previous Chapter</a>
+        </li>
         {% endif %}
 
         {% if navigation.nxt %}
         <li class="nav-item ms-auto"><a class=" btn btn-primary"
-            href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next Chapter</a></li>
+            href="{% url 'story-chapter' pk=story.id slug=navigation.nxt.slug %}">Next Chapter ></a></li>
         {% endif %}
       </ul>
     </main>

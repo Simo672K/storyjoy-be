@@ -13,6 +13,12 @@
 <body>
   {% include 'navbar.html' %}
   <div class="container my-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'home-page' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ story.title }}</li>
+      </ol>
+    </nav>
     <h1>Story details page</h1>
     <h3>Author: {{ story.author.username }}</h3>
     <ul>

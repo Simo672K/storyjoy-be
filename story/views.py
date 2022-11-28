@@ -6,7 +6,7 @@ from .utils import array_item_prev_next
 def home(request):
   stories = Story.objects.all()
   context = {
-    'stories': list(stories)
+    'stories': list(stories),
   }
   return render(request, 'index.html', context)
 
@@ -31,3 +31,15 @@ def story_chapter(request, pk, slug):
     'navigation': navigation,
   }
   return render(request, 'story-chapter.html', context)
+
+def search(request):
+  result= None
+  query = None
+  if request.method == 'GET' and ('search' in dict(request.GET).keys()):
+    query= request.GET['search']
+    result= Story.objects.filter(title__icontains= request.GET['search'])
+  context= {
+    'results': result,
+    'query': query,
+  }
+  return render(request, 'search.html', context)
