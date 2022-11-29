@@ -21,6 +21,16 @@
     </nav>
     <h1>Story details page</h1>
     <h3>Author: {{ story.author.username }}</h3>
+    <div class="row">
+      <div class="col-6">
+        <img class="img-fluid" src="{{ story.cover.url }}" alt="{{ story.title }} cover">
+      </div>
+      <div class="col-5 offset-1">
+        <p>
+          {{ story.description }}
+        </p>
+      </div>
+    </div>
     <ul>
       {% for chapter in story.chapter_set.all %}
       <li><a href="{% url 'story-chapter' pk=story.id slug=chapter.slug %}">{{chapter.title}}</a></li>
